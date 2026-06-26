@@ -1,0 +1,163 @@
+{
+  "name": "Loan",
+  "type": "object",
+  "properties": {
+    "loan_id": {
+      "type": "string",
+      "description": "Unique loan ID e.g. LN-00001"
+    },
+    "borrower_id": {
+      "type": "string",
+      "description": "ID of the borrower"
+    },
+    "borrower_name": {
+      "type": "string",
+      "description": "Name of the borrower (denormalized for display)"
+    },
+    "borrower_ref_id": {
+      "type": "string",
+      "description": "BRW-xxxxx reference ID"
+    },
+    "principal_amount": {
+      "type": "number",
+      "description": "Original loan amount"
+    },
+    "interest_rate": {
+      "type": "number",
+      "description": "Monthly interest rate percentage"
+    },
+    "interest_amount": {
+      "type": "number",
+      "description": "Computed total interest amount"
+    },
+    "payment_frequency": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "monthly"
+      ],
+      "default": "monthly",
+      "description": "Payment frequency"
+    },
+    "term_months": {
+      "type": "number",
+      "description": "Loan term in months"
+    },
+    "term_value": {
+      "type": "number",
+      "description": "Loan term numeric value (periods)"
+    },
+    "monthly_payment": {
+      "type": "number",
+      "description": "Calculated periodic payment amount"
+    },
+    "total_due": {
+      "type": "number",
+      "description": "Total amount due including interest"
+    },
+    "total_paid": {
+      "type": "number",
+      "description": "Total amount paid so far",
+      "default": 0
+    },
+    "principal_paid": {
+      "type": "number",
+      "description": "Total principal paid so far",
+      "default": 0
+    },
+    "interest_paid": {
+      "type": "number",
+      "description": "Total interest paid so far",
+      "default": 0
+    },
+    "remaining_balance": {
+      "type": "number",
+      "description": "Remaining balance"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Loan release date"
+    },
+    "first_due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "First due date"
+    },
+    "next_payment_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Next payment due date"
+    },
+    "maturity_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Loan maturity / end date"
+    },
+    "collector": {
+      "type": "string",
+      "description": "Assigned collector name"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "paid",
+        "overdue",
+        "defaulted"
+      ],
+      "default": "active",
+      "description": "Loan status"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes"
+    },
+    "schedule": {
+      "type": "array",
+      "description": "Stored payment schedule rows",
+      "items": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "format": "date"
+          },
+          "principal": {
+            "type": "number"
+          },
+          "interest": {
+            "type": "number"
+          },
+          "to_pay": {
+            "type": "number"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "unpaid",
+              "fully_paid",
+              "interest_paid",
+              "partial"
+            ]
+          },
+          "paid_amount": {
+            "type": "number",
+            "default": 0
+          },
+          "paid_date": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "borrower_id",
+    "principal_amount",
+    "interest_rate",
+    "term_months"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string",
+      "description": "Action performed e.g. REGISTER_BORROWER"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Entity type affected"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "ID of the entity affected"
+    },
+    "description": {
+      "type": "string",
+      "description": "Human-readable description of the action"
+    },
+    "performed_by": {
+      "type": "string",
+      "description": "User who performed the action"
+    }
+  },
+  "required": [
+    "action"
+  ]
+}

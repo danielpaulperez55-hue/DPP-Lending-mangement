@@ -1,0 +1,15 @@
+{
+  "name": "Settings",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Company name"
+    },
+    "logo_url": {
+      "type": "string",
+      "description": "URL of the company logo"
+    }
+  },
+  "required": []
+}
